@@ -14,29 +14,17 @@ const playList = [
   { title: 'Learn to Code', dur: '13:55' },
 ];
 
-const filteredPlaylist = playList.filter( word => {
+
+const totalTime = playList.filter( word => {
   return word.title.match(/code/i);
-}); // filter objects that are videos based on the word 'code' in title.  Done.
-
-const durationValues = filteredPlaylist.map( a => a.dur ); // create new array with the duration of the videos.
-
-const valuesToMinutes = durationValues.map(converter);
-
-function converter(time) {
+}).map( a => a.dur ).map(time => {
   secondsDuration = (time.split(':').pop());
   minutesToSeconds = (time.split(':', 1)) * 60;
   return +minutesToSeconds + +secondsDuration;
-}
-
-
-const totalTime = valuesToMinutes.reduce ((accumulator, currentValue) => accumulator + currentValue); // add time after converting to seconds
-
-
-console.log('The length of each coding video is: ' + durationValues);
-
-console.log('Each video length in seconds is: ' + valuesToMinutes);
+}).reduce ((accumulator, currentValue) => accumulator + currentValue);
 
 console.log('The total seconds for all of the videos together is: ' + totalTime);
+
 
 
 
