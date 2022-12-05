@@ -1,3 +1,45 @@
+
+// Exercise: Chaining arrow functions - Sum playlist duration
+
+// Below is a list of videos. By chaining a series of arrow functions, sums the total seconds of only the videos that include  'Code' as part of the title.
+
+ 
+const playList = [
+  { title: 'Learn to Code', dur: '5:34' },
+  { title: 'Learn to Code', dur: '2:33' },
+  { title: 'Learn to Skate', dur: '15:36' },
+  { title: 'Learn to Code', dur: '8:32' },
+  { title: 'Learn to Skate', dur: '10:17' },
+  { title: 'Learn to Skate', dur: '15:36' },
+  { title: 'Learn to Code', dur: '13:55' },
+];
+
+const filteredPlaylist = playList.filter( word => {
+  return word.title.match(/code/i);
+}); // filter objects that are videos based on the word 'code' in title.  Done.
+
+const durationValues = filteredPlaylist.map( a => a.dur ); // create new array with the duration of the videos.
+
+const valuesToMinutes = durationValues.map(converter);
+
+function converter(time) {
+  secondsDuration = (time.split(':').pop());
+  minutesToSeconds = (time.split(':', 1)) * 60;
+  return +minutesToSeconds + +secondsDuration;
+}
+
+
+const totalTime = valuesToMinutes.reduce ((accumulator, currentValue) => accumulator + currentValue); // add time after converting to seconds
+
+
+console.log('The length of each coding video is: ' + durationValues);
+
+console.log('Each video length in seconds is: ' + valuesToMinutes);
+
+console.log('The total seconds for all of the videos together is: ' + totalTime);
+
+
+
 // Learning Javascript - Arrow functions
 // const foo = x => x + 1;
 // foo(1); // -> 2
@@ -117,43 +159,6 @@ The code should still work 😉 */
 
 
 
-// Exercise:
 
-// Below is a list of videos. By chaining a series of arrow functions, sums the total seconds of only the videos that include  'Code' as part of the title.
-
- 
-const playList = [
-  { title: 'Learn to Code', dur: '5:34' },
-  { title: 'Learn to Code', dur: '2:33' },
-  { title: 'Learn to Skate', dur: '15:36' },
-  { title: 'Learn to Code', dur: '8:32' },
-  { title: 'Learn to Skate', dur: '10:17' },
-  { title: 'Learn to Skate', dur: '15:36' },
-  { title: 'Learn to Code', dur: '13:55' },
-];
-
-const filteredPlaylist = playList.filter( word => {
-  return word.title.match(/code/i);
-}); // filter objects that are videos based on the word 'code' in title.  Done.
-
-const durationValues = filteredPlaylist.map( a => a.dur ); // create new array with the duration of the videos.
-
-const valuesToMinutes = durationValues.map(converter);
-
-function converter(time) {
-  secondsDuration = (time.split(':').pop());
-  minutesToSeconds = (time.split(':', 1)) * 60;
-  return +minutesToSeconds + +secondsDuration;
-}
-
-
-const totalTime = valuesToMinutes.reduce ((accumulator, currentValue) => accumulator + currentValue); // add time after converting to seconds
-
-
-console.log('The length of each coding video is: ' + durationValues);
-
-console.log('Each length in seconds is: ' + valuesToMinutes);
-
-console.log('The total seconds for all of the videos together is: ' + totalTime);
 
 
